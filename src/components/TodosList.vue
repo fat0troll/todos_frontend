@@ -17,17 +17,20 @@
         </tbody>
       </table>
     </div>
+    <todo-new-form></todo-new-form>
   </div>
 </template>
 
 <script>
 import {HTTP} from './HTTPClient'
 import TodoListItem from '@/components/TodosListItem'
+import TodoNewForm from '@/components/TodosNewForm'
 
 export default {
   name: 'TodoList',
   components: {
-    TodoListItem
+    TodoListItem,
+    TodoNewForm
   },
   data () {
     return {

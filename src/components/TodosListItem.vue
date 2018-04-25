@@ -1,7 +1,7 @@
 <template>
   <tr>
-    <td>{{ todoItem.id }}</td>
-    <td><input type="text" v-model="todoItem.title" v-on:input="updateTodoItem"></td>
+    <td><a :href="'/todos/' + todoItem.id">{{ todoItem.id }}</a></td>
+    <td><input type="text" class="input" v-model="todoItem.title" v-on:input="updateTodoItem"></td>
     <td><input type="checkbox" id="checkbox" v-model="todoItem.is_public" v-on:click="updateTodoItem"></td>
   </tr>
 </template>
