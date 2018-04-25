@@ -3,6 +3,7 @@
     <td><a :href="'/todos/' + todoItem.id">{{ todoItem.id }}</a></td>
     <td><input type="text" class="input" v-model="todoItem.title" v-on:input="updateTodoItem"></td>
     <td><input type="checkbox" id="checkbox" v-model="todoItem.is_public" v-on:click="updateTodoItem"></td>
+    <td><a v-on:click="deleteTodoItem">Delete</a></td>
   </tr>
 </template>
 
@@ -27,6 +28,16 @@ export default {
       })
         .then(response => {
           console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    deleteTodoItem: function () {
+      HTTP.delete('todos/' + this.todoItem.id)
+        .then(response => {
+          console.log(response)
+          location.reload()
         })
         .catch(error => {
           console.log(error)

@@ -2,6 +2,7 @@
   <tr>
     <td><input type="text" class="input" v-model="taskItem.name" v-on:input="updateTaskItem"></td>
     <td><input type="checkbox" id="checkbox" v-model="taskItem.done" v-on:click="updateTaskItem"></td>
+    <td><a v-on:click="deleteTaskItem">Delete</a></td>
   </tr>
 </template>
 
@@ -26,6 +27,16 @@ export default {
       })
         .then(response => {
           console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    deleteTaskItem: function () {
+      HTTP.delete('todos/' + this.todoID + '/tasks/' + this.taskItem.id)
+        .then(response => {
+          console.log(response)
+          location.reload()
         })
         .catch(error => {
           console.log(error)
