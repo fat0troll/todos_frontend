@@ -1,30 +1,16 @@
 # todos_frontend
 
-> Simple todos application frontend created for skill-testing purposes
+Simple todos application frontend created for skill-testing purposes
 
-## Build Setup
+This application runs as standard Webpacked Vue.js app. It assumes that backend is located on ``http://localhost:3000``, and frontend is on ``http://localhost:8080``.
 
-``` bash
-# install dependencies
-npm install
+## Timeline of development
 
-# serve with hot reload at localhost:8080
-npm run dev
+* 0h15m: Started from Vue.js webpack template. I'm using Bulma as CSS framework as I don't have special requirements in this field and may choose what I want.
+* 1h40m: Added login support and cookies
+* 2h10m: Added registration form
+* 3h10m: Added todos index and ability to publish todo for everyone
+* 3h50m: Added new todo form
+* 4h20m: Added tasks list, ability to edit them, mark them done and add new one
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+This timeline doesn't include time for learning ``Vue.js`` itself. 
