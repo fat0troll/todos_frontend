@@ -1,40 +1,41 @@
 <template>
   <div class="columns is-multiline">
     <div class="column is-12 notification is-danger" v-if="message">
-      <p>Todo saving errors: {{ message }}</p>
+      <p>Tasks errors: {{ message }}</p>
     </div>
     <div class="column is-12">
+      <h5 class="is-size-5">Todo: {{ todo.title }} </h5>
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Название</th>
-            <th>Доступно для всех?</th>
+            <th>Выполнено?</th>
           </tr>
         </thead>
         <tbody>
-          <todo-list-item :todoItem="todo" v-for="todo in todos" :key="todo.id"></todo-list-item>
+          <task-list-item :todoID="todo.id" :taskItem="task" v-for="task in tasks" :key="task.id"></task-list-item>
         </tbody>
       </table>
     </div>
-    <todo-new-form></todo-new-form>
+    <task-new-form :todoID="todo.id"></task-new-form>
   </div>
 </template>
 
 <script>
 import {HTTP} from './HTTPClient'
-import TodoListItem from '@/components/TodosListItem'
-import TodoNewForm from '@/components/TodosNewForm'
+import TaskListItem from '@/components/TasksListItem'
+import TaskNewForm from '@/components/TasksNewForm'
 
 export default {
-  name: 'TodoList',
+  name: 'TaskList',
   components: {
-    TodoListItem,
-    TodoNewForm
+    TaskListItem,
+    TaskNewForm
   },
   data () {
     return {
-      todos: [],
+      todo: Object,
+      tasks: [],
       message: ''
     }
   },
@@ -44,9 +45,17 @@ export default {
       this.$router.push('/login')
     }
     HTTP.defaults.headers.common['Authorization'] = authToken
-    HTTP.get('todos')
+    HTTP.get('todos/' + this.$route.params.todo_id)
       .then(response => {
-        this.todos = response.data
+        this.todo = response.data
+      })
+      .catch(error => {
+        console.log(error)
+        this.$router.push('/todos')
+      })
+    HTTP.get('todos/' + this.$route.params.todo_id + '/tasks')
+      .then(response => {
+        this.tasks = response.data
       })
       .catch(error => {
         if (error.response) {

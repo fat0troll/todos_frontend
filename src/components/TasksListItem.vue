@@ -1,8 +1,7 @@
 <template>
   <tr>
-    <td><a :href="'/todos/' + todoItem.id">{{ todoItem.id }}</a></td>
-    <td><input type="text" class="input" v-model="todoItem.title" v-on:input="updateTodoItem"></td>
-    <td><input type="checkbox" id="checkbox" v-model="todoItem.is_public" v-on:click="updateTodoItem"></td>
+    <td><input type="text" class="input" v-model="taskItem.name" v-on:input="updateTaskItem"></td>
+    <td><input type="checkbox" id="checkbox" v-model="taskItem.done" v-on:click="updateTaskItem"></td>
   </tr>
 </template>
 
@@ -10,8 +9,8 @@
 import {HTTP} from './HTTPClient'
 
 export default {
-  name: 'TodoListItem',
-  props: ['todoItem'],
+  name: 'TaskListItem',
+  props: ['taskItem', 'todoID'],
   beforeCreate: function () {
     var authToken = this.$cookie.get('auth_token')
     if (authToken == null) {
@@ -20,10 +19,10 @@ export default {
     HTTP.defaults.headers.common['Authorization'] = authToken
   },
   methods: {
-    updateTodoItem: function () {
-      HTTP.put('todos/' + this.todoItem.id, {
-        title: this.todoItem.title,
-        is_public: this.todoItem.is_public
+    updateTaskItem: function () {
+      HTTP.put('todos/' + this.todoID + '/tasks/' + this.taskItem.id, {
+        name: this.taskItem.name,
+        done: this.taskItem.done
       })
         .then(response => {
           console.log(response)

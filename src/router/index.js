@@ -6,6 +6,7 @@ import LoginForm from '@/components/LoginForm'
 import RegisterForm from '@/components/RegisterForm'
 import Logout from '@/components/Logout'
 import TodosList from '@/components/TodosList'
+import TasksList from '@/components/TasksList'
 
 Vue.use(Router)
 Vue.use(Cookies)
@@ -37,6 +38,11 @@ export default new Router({
       path: '/todos',
       name: 'TodosList',
       component: TodosList
+    },
+    {
+      path: '/todos/:todo_id',
+      name: 'TasksList',
+      component: TasksList
     }
   ]
 })
