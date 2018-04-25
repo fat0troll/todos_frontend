@@ -17,6 +17,11 @@
 <script>
 export default {
   name: 'NavBar',
+  data () {
+    return {
+      user: ''
+    }
+  },
   created: function () {
     if (this.auth_token != null) {
       this.user = 'true'
@@ -25,13 +30,6 @@ export default {
     }
   },
   computed: {
-    user: function () {
-      if (this.$cookie.get('auth_token') != null) {
-        // user is logged in
-        return 'true'
-      }
-      return 'false'
-    },
     auth_token: function () {
       return this.$cookie.get('auth_token')
     }

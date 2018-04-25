@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Cookies from 'vue-cookie'
 import StartPage from '@/components/StartPage'
 import LoginForm from '@/components/LoginForm'
+import RegisterForm from '@/components/RegisterForm'
 import Logout from '@/components/Logout'
 
 Vue.use(Router)
@@ -20,6 +21,11 @@ export default new Router({
       path: '/login',
       name: 'LoginForm',
       component: LoginForm
+    },
+    {
+      path: '/register',
+      name: 'RegisterForm',
+      component: RegisterForm
     },
     {
       path: '/logout',
